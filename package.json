@@ -6,7 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:extension": "ng serve extension",
+    "build:extension": "ng build extension --configuration production",
+    "build:extension:dev": "ng build extension --configuration development",
+    "watch:extension": "ng build extension --watch --configuration development"
   },
   "prettier": {
     "printWidth": 100,
@@ -37,6 +41,7 @@
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
     "@tailwindcss/postcss": "^4.1.12",
+    "@types/chrome": "^0.1.32",
     "jsdom": "^27.1.0",
     "ng-packagr": "^21.0.0",
     "postcss": "^8.5.3",
