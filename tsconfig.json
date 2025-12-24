@@ -13,7 +13,12 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "task-manager": [
+        "./dist/task-manager"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -28,6 +33,12 @@
     },
     {
       "path": "./projects/extension/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/task-manager/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/task-manager/tsconfig.spec.json"
     }
   ]
 }

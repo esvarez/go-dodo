@@ -68,6 +68,32 @@
           "builder": "@angular/build:unit-test"
         }
       }
+    },
+    "task-manager": {
+      "projectType": "library",
+      "root": "projects/task-manager",
+      "sourceRoot": "projects/task-manager/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/task-manager/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/task-manager/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/task-manager/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }
