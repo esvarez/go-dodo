@@ -1,21 +1,26 @@
-<div class="todo-container">
+<div class="w-[400px] h-[600px] bg-slate-50 flex flex-col overflow-hidden">
   <!-- Header -->
-  <div class="header">
-    <div class="header-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v20M2 12h20"></path>
-        <circle cx="12" cy="12" r="9"></circle>
-      </svg>
+  <div class="bg-gradient-to-br from-emerald-500 to-teal-500 px-6 py-5 text-white relative overflow-hidden">
+    <div class="absolute -top-1/2 -right-1/5 w-[200px] h-[200px] bg-white/10 rounded-full blur-[40px]"></div>
+    <div class="flex items-center gap-3.5 relative z-10">
+      <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-[10px] shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">
+          <path d="M12 2v20M2 12h20"></path>
+          <circle cx="12" cy="12" r="9"></circle>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h1 class="text-2xl font-bold m-0 tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] leading-tight">My Dodos</h1>
+        <p class="text-[0.8125rem] mt-1 mb-0 opacity-90 font-normal leading-snug">Stay organized, stay productive</p>
+      </div>
     </div>
-    <h1 class="header-title">My Tasks</h1>
-    <p class="header-subtitle">Stay organized, stay productive</p>
   </div>
 
   <!-- Add Task Form -->
-  <div class="add-task-section">
-    <form (ngSubmit)="addTask()" class="add-task-form">
-      <div class="input-wrapper">
-        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <div class="px-6 py-5 bg-white border-b border-gray-200">
+    <form (ngSubmit)="addTask()" class="flex gap-3 items-stretch">
+      <div class="flex-1 relative flex items-center group">
+        <svg class="absolute left-4 text-emerald-500 opacity-60 pointer-events-none transition-opacity duration-200 group-focus-within:opacity-100" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="8" x2="12" y2="16"></line>
           <line x1="8" y1="12" x2="16" y2="12"></line>
@@ -25,54 +30,54 @@
           [ngModel]="newTaskTitle()"
           (ngModelChange)="newTaskTitle.set($event)"
           placeholder="Add a new task..."
-          class="task-input"
+          class="w-full py-3.5 px-4 pl-11 border-2 border-gray-200 rounded-xl text-[0.9375rem] text-gray-800 bg-slate-50 transition-all duration-200 outline-none placeholder:text-gray-400 focus:border-emerald-500 focus:bg-white focus:shadow-[0_0_0_3px_rgba(16,185,129,0.1)]"
           maxlength="100"
         />
       </div>
-      <button type="submit" class="add-button" [disabled]="!newTaskTitle().trim()">
+      <button type="submit" class="px-6 bg-gradient-to-br from-emerald-500 to-teal-500 text-white border-none rounded-xl text-[0.9375rem] font-semibold cursor-pointer transition-all duration-200 shadow-sm whitespace-nowrap hover:enabled:-translate-y-0.5 hover:enabled:shadow-md active:enabled:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed" [disabled]="!newTaskTitle().trim()">
         <span>Add</span>
       </button>
     </form>
   </div>
 
   <!-- Task List -->
-  <div class="tasks-section">
+  <div class="flex-1 overflow-y-auto px-6 pt-4 pb-6 bg-slate-50 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400 scrollbar-thumb-rounded">
     @if (tasks().length === 0) {
       <!-- Empty State -->
-      <div class="empty-state">
-        <div class="empty-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="flex flex-col items-center justify-center py-12 px-8 text-center">
+        <div class="w-24 h-24 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500 opacity-60">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
         </div>
-        <h3 class="empty-title">No tasks yet</h3>
-        <p class="empty-message">Start by adding your first task above</p>
+        <h3 class="text-xl font-semibold text-gray-800 m-0 mb-2">No tasks yet</h3>
+        <p class="text-[0.9375rem] text-gray-600 m-0">Start by adding your first task above</p>
       </div>
     } @else {
       <!-- Task Items -->
-      <div class="task-list">
+      <div class="flex flex-col gap-2.5">
         @for (task of tasks(); track task.id) {
-          <div class="task-item" [class.completed]="task.completed">
-            <div class="task-content">
-              <label class="checkbox-wrapper">
+          <div class="bg-white border-[1.5px] border-gray-200 rounded-xl px-4.5 py-4 flex items-center justify-between transition-all duration-200 relative overflow-hidden animate-[slideIn_0.3s_ease] before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-emerald-500 before:to-teal-500 before:opacity-0 before:transition-opacity before:duration-200 hover:bg-emerald-50 hover:border-emerald-500 hover:shadow-sm hover:before:opacity-100" [ngClass]="{'!bg-emerald-50 !border-emerald-200': task.completed}">
+            <div class="flex-1 flex items-center gap-3.5 min-w-0">
+              <label class="flex items-center cursor-pointer relative group/checkbox">
                 <input
                   type="checkbox"
                   [checked]="task.completed"
                   (change)="toggleTask(task.id)"
-                  class="task-checkbox"
+                  class="peer absolute opacity-0 w-0 h-0"
                 />
-                <span class="checkbox-custom">
-                  <svg class="checkbox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <span class="w-[22px] h-[22px] border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-200 bg-white peer-checked:bg-gradient-to-br peer-checked:from-emerald-500 peer-checked:to-teal-500 peer-checked:border-emerald-500 group-hover/checkbox:border-emerald-500 group-hover/checkbox:bg-emerald-500/5 peer-checked:group-hover/checkbox:from-emerald-600 peer-checked:group-hover/checkbox:to-teal-600">
+                  <svg class="text-white opacity-0 scale-0 transition-all duration-200 [transition-timing-function:cubic-bezier(0.68,-0.55,0.265,1.55)] peer-checked:opacity-100 peer-checked:scale-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </span>
               </label>
-              <span class="task-title">{{ task.title }}</span>
+              <span class="flex-1 text-[0.9375rem] text-gray-800 leading-normal break-words transition-all duration-200" [ngClass]="{'line-through !text-gray-400': task.completed}">{{ task.title }}</span>
             </div>
             <button
-              class="delete-button"
+              class="p-2 bg-transparent border-none rounded-lg cursor-pointer text-gray-400 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-red-100 hover:text-red-600 active:scale-95"
               (click)="deleteTask(task.id)"
               aria-label="Delete task"
             >
@@ -86,8 +91,8 @@
       </div>
 
       <!-- Task Counter -->
-      <div class="task-counter">
-        <span class="counter-text">
+      <div class="mt-4 py-3.5 px-4.5 bg-white border-[1.5px] border-gray-200 rounded-xl text-center">
+        <span class="text-sm text-gray-600 font-medium">
           {{ remainingTasksCount() }}
           {{ remainingTasksCount() === 1 ? 'task' : 'tasks' }} remaining
         </span>
