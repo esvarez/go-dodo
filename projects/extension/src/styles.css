@@ -1,8 +1,0 @@
-@import "tailwindcss";
-
-/* Global Styles for Browser Extension */
-html, body {
-  width: 400px;
-  min-height: 600px;
-  overflow: hidden;
-}
