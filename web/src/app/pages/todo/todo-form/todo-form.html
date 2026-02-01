@@ -31,7 +31,10 @@
 
     <nz-form-item>
       <nz-form-control>
-        <button nz-button nzType="primary" type="submit">Guardar tarea</button>
+        <div class="form-actions">
+          <button nz-button nzType="default" type="button" (click)="onCancel()">Cancelar</button>
+          <button nz-button nzType="primary" type="submit">Guardar tarea</button>
+        </div>
       </nz-form-control>
     </nz-form-item>
   </form>

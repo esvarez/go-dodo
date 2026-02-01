@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -21,6 +21,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
   styleUrl: './todo-form.css',
 })
 export class TodoFormComponent {
+  cancel = output<void>();
+
   expectedTimeOptions = [
     { value: 10, label: '10 min' },
     { value: 15, label: '15 min' },
@@ -50,5 +52,14 @@ export class TodoFormComponent {
         }
       });
     }
+  }
+
+  onCancel(): void {
+    this.todoForm.reset({
+      name: '',
+      effort: 2,
+      expectedTime: 15,
+    });
+    this.cancel.emit();
   }
 }
