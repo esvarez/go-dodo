@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 @Component({
   selector: 'app-todo-form',
@@ -14,26 +12,29 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     ReactiveFormsModule,
     NzFormModule,
     NzInputModule,
-    NzInputNumberModule,
-    NzDatePickerModule,
-    NzSelectModule,
     NzButtonModule,
+    NzRadioModule,
   ],
   templateUrl: './todo-form.html',
   styleUrl: './todo-form.css',
 })
 export class TodoFormComponent {
-  projects = [
-    { id: 1, name: 'Personal' },
-    { id: 2, name: 'Work' },
-    { id: 3, name: 'Side Project' },
+  expectedTimeOptions = [
+    { value: 10, label: '10 min' },
+    { value: 15, label: '15 min' },
+    { value: 45, label: '>45 min' },
+  ];
+
+  effortOptions = [
+    { value: 1, label: '🟢' },
+    { value: 2, label: '🟡' },
+    { value: 3, label: '🔴' },
   ];
 
   todoForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    effort: new FormControl<number | null>(null, [Validators.required, Validators.min(1)]),
-    dueDate: new FormControl<Date | null>(null),
-    projectId: new FormControl<number | null>(null),
+    effort: new FormControl<number>(2),
+    expectedTime: new FormControl<number>(15),
   });
 
   onSubmit(): void {

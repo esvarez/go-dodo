@@ -1,56 +1,36 @@
 <form nz-form [formGroup]="todoForm" (ngSubmit)="onSubmit()" nzLayout="vertical">
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="name">Name</nz-form-label>
-    <nz-form-control nzErrorTip="Please enter a task name">
-      <input nz-input formControlName="name" id="name" placeholder="Task name" />
+    <nz-form-label nzRequired nzFor="name">¿Qué quieres hacer?</nz-form-label>
+    <nz-form-control nzErrorTip="Por favor ingresa una tarea">
+      <input nz-input formControlName="name" id="name" placeholder="Escribe tu tarea aquí..." />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="effort">Effort Required</nz-form-label>
-    <nz-form-control nzErrorTip="Please enter the effort required">
-      <nz-input-number
-        formControlName="effort"
-        id="effort"
-        [nzMin]="1"
-        [nzStep]="1"
-        nzPlaceHolder="Effort points"
-        style="width: 100%"
-      ></nz-input-number>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label nzFor="dueDate">Due Date</nz-form-label>
+    <nz-form-label nzFor="expectedTime">Tiempo estimado</nz-form-label>
     <nz-form-control>
-      <nz-date-picker
-        formControlName="dueDate"
-        id="dueDate"
-        nzPlaceHolder="Select due date"
-        style="width: 100%"
-      ></nz-date-picker>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label nzFor="projectId">Project</nz-form-label>
-    <nz-form-control>
-      <nz-select
-        formControlName="projectId"
-        id="projectId"
-        nzPlaceHolder="Select a project"
-        nzAllowClear
-      >
-        @for (project of projects; track project.id) {
-          <nz-option [nzValue]="project.id" [nzLabel]="project.name"></nz-option>
+      <nz-radio-group formControlName="expectedTime" nzButtonStyle="solid">
+        @for (option of expectedTimeOptions; track option.value) {
+          <label nz-radio-button [nzValue]="option.value">{{ option.label }}</label>
         }
-      </nz-select>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="effort">Esfuerzo</nz-form-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="effort">
+        @for (option of effortOptions; track option.value) {
+          <label nz-radio-button [nzValue]="option.value">{{ option.label }}</label>
+        }
+      </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-control>
-      <button nz-button nzType="primary" type="submit">Add Task</button>
+      <button nz-button nzType="primary" type="submit">Guardar tarea</button>
     </nz-form-control>
   </nz-form-item>
 </form>
