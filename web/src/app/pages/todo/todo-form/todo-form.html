@@ -1,36 +1,39 @@
-<form nz-form [formGroup]="todoForm" (ngSubmit)="onSubmit()" nzLayout="vertical">
-  <nz-form-item>
-    <nz-form-label nzRequired nzFor="name">¿Qué quieres hacer?</nz-form-label>
-    <nz-form-control nzErrorTip="Por favor ingresa una tarea">
-      <input nz-input formControlName="name" id="name" placeholder="Escribe tu tarea aquí..." />
-    </nz-form-control>
-  </nz-form-item>
+<nz-card> 
+  <form nz-form [formGroup]="todoForm" (ngSubmit)="onSubmit()" nzLayout="vertical">
+    <nz-form-item>
+      <nz-form-label nzFor="name">¿Qué quieres hacer?</nz-form-label>
+      <nz-form-control nzErrorTip="Por favor ingresa una tarea">
+        <input nz-input formControlName="name" id="name" placeholder="Escribe algo simple..." />
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label nzFor="expectedTime">Tiempo estimado</nz-form-label>
-    <nz-form-control>
-      <nz-radio-group formControlName="expectedTime" nzButtonStyle="solid">
-        @for (option of expectedTimeOptions; track option.value) {
-          <label nz-radio-button [nzValue]="option.value">{{ option.label }}</label>
-        }
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzFor="expectedTime">¿Cuánto tiempo crees que tome?</nz-form-label>
+      <nz-form-control>
+        <nz-radio-group formControlName="expectedTime" nzButtonStyle="solid">
+          @for (option of expectedTimeOptions; track option.value) {
+            <label nz-radio-button [nzValue]="option.value">{{ option.label }}</label>
+          }
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label nzFor="effort">Esfuerzo</nz-form-label>
-    <nz-form-control>
-      <nz-radio-group formControlName="effort">
-        @for (option of effortOptions; track option.value) {
-          <label nz-radio-button [nzValue]="option.value">{{ option.label }}</label>
-        }
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzFor="effort">¿Qué energía requiere?</nz-form-label>
+      <nz-form-control>
+        <nz-radio-group formControlName="effort">
+          @for (option of effortOptions; track option.value) {
+            <label nz-radio-button [nzValue]="option.value">{{ option.label }}</label>
+          }
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-control>
-      <button nz-button nzType="primary" type="submit">Guardar tarea</button>
-    </nz-form-control>
-  </nz-form-item>
-</form>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Guardar tarea</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>
+

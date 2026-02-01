@@ -4,6 +4,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @Component({
   selector: 'app-todo-form',
@@ -14,6 +15,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
     NzInputModule,
     NzButtonModule,
     NzRadioModule,
+    NzCardModule,
   ],
   templateUrl: './todo-form.html',
   styleUrl: './todo-form.css',
@@ -26,9 +28,9 @@ export class TodoFormComponent {
   ];
 
   effortOptions = [
-    { value: 1, label: '🟢' },
-    { value: 2, label: '🟡' },
-    { value: 3, label: '🔴' },
+    { value: 1, label: '🟢 Baja' },
+    { value: 2, label: '🟡 Media' },
+    { value: 3, label: '🔴 Alta' },
   ];
 
   todoForm = new FormGroup({
